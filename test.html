@@ -1,0 +1,70 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    const assert = (condition) => {
+      if (condition) {
+        return true;
+      }
+      return false;
+    };
+
+    const clacMaxValue = (weight, value, maxWeight) => {
+      const map = {};
+
+      for (let i = 0; i < weight.length; i++) {
+        map[weight[i]] = value[i];
+      }
+
+      //   console.log("map", map);
+
+      const sortedWeight = weight.sort().reverse();
+
+      //   console.log("sortedWeight", sortedWeight);
+
+      let weightSum = 0;
+
+      let valueSum = 0;
+
+      for (let j = 0; j < sortedWeight.length; j++) {
+        const currWeight = sortedWeight[j];
+        const currValue = map[currWeight];
+
+        // console.log("curr", currValue);
+
+        if (weightSum + currWeight <= maxWeight) {
+          weightSum = weightSum + currWeight;
+          valueSum = valueSum + currValue;
+        }
+      }
+
+      //   console.log("valueSum", valueSum);
+
+      return valueSum;
+    };
+
+    console.log(
+      "clacMaxValue([999, 2, 997, 998], [10, 9, 8, 7], 10000) === 34",
+      assert(clacMaxValue([999, 2, 997, 998], [10, 9, 8, 7], 10000) === 34)
+    );
+
+    console.log(
+      "clacMaxValue([999, 2, 997, 998], [10, 9, 8, 7], 10000) === 13",
+      assert(
+        clacMaxValue(
+          [
+            1000, 2, 1000, 1000, 3, 1000, 1000, 4, 1000, 1000, 1000, 1000, 1,
+            1000,
+          ],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          10000
+        ) === 13
+      )
+    );
+  </script>
+  <body></body>
+</html>
